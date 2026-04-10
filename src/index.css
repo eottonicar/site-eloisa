@@ -5281,4 +5281,21 @@ img[src*="hero-title"] {
     padding-top: clamp(2.6rem, 8vh, 4rem);
     padding-bottom: clamp(2.4rem, 7vh, 3.6rem);
   }
+
+  .mapa-stage,
+  .mapa-canvas {
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  .mapa-stage::before,
+  .mapa-stage::after,
+  .mapa-canvas::before {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    opacity: 0 !important;
+  }
 }

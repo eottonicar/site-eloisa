@@ -5320,3 +5320,132 @@ img[src*="hero-title"] {
     word-break: normal;
   }
 }
+
+@media (max-width: 768px) {
+  .mapa-stage {
+    padding: clamp(1.6rem, 5vh, 2.6rem) clamp(0.9rem, 4vw, 1.2rem) clamp(2rem, 6vh, 3rem);
+    overflow-x: hidden;
+  }
+
+  .mapa-strike-image,
+  .mapa-layer,
+  .mapa-line,
+  .mapa-core {
+    display: none !important;
+  }
+
+  .mapa-canvas {
+    display: flex;
+    flex-direction: column;
+    gap: 0.72rem;
+    width: 100%;
+    max-width: min(100%, 34rem);
+    min-height: auto;
+    margin: 0 auto;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .mapa-canvas::after {
+    display: block !important;
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    width: clamp(120px, 34vw, 176px);
+    margin: 0 auto 0.8rem;
+    opacity: 0.42;
+  }
+
+  .mapa-point {
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    transform: none !important;
+    padding: 0.62rem 0.8rem 0.64rem 1rem;
+    border-left-width: 2px;
+    border-radius: 8px;
+  }
+
+  .mapa-point h3,
+  .mapa-point p {
+    opacity: 1;
+    transform: none;
+  }
+
+  .manifesto-experience {
+    min-height: auto;
+    padding: clamp(2.4rem, 8vh, 4rem) 1rem clamp(2.2rem, 8vh, 3.4rem);
+    overflow: visible;
+  }
+
+  .manifesto-point {
+    display: none;
+  }
+
+  .manifesto-experience__line {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    max-width: min(92vw, 30rem);
+    margin: 0 0 0.62rem;
+    z-index: 6;
+  }
+
+  .manifesto-experience__subtitle {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    max-width: min(92vw, 30rem);
+    margin: 0 0 1rem;
+    z-index: 6;
+  }
+
+  .manifesto-reveal {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    width: 100%;
+    max-width: min(92vw, 34rem);
+    margin: 0.4rem 0 0;
+    padding: 0.9rem 0.9rem 1rem;
+    border-radius: 14px;
+    border: 1px solid rgb(var(--site-cream-rgb) / 0.24);
+    background: linear-gradient(
+      180deg,
+      rgb(var(--site-black-rgb) / 0.52) 0%,
+      rgb(var(--site-black-rgb) / 0.34) 100%
+    );
+    backdrop-filter: blur(2px);
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .manifesto-reveal::before {
+    display: none;
+  }
+
+  .manifesto-reveal__stack {
+    gap: 0.95rem;
+    padding-right: 0;
+  }
+
+  .manifesto-reveal__fragment {
+    opacity: 1;
+    transform: none;
+    border-left: none;
+    padding: 0;
+    line-height: 1.34;
+  }
+}

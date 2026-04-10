@@ -19,6 +19,7 @@ const normalizePath = (rawPath = '/') => {
 
 function App() {
   const [currentPath, setCurrentPath] = useState(() => normalizePath(window.location.pathname || '/'))
+  const [isMobileLayout, setIsMobileLayout] = useState(() => window.matchMedia('(max-width: 768px)').matches)
   const mapaRef = useRef(null)
   const manifestoRef = useRef(null)
   const senseFieldRef = useRef(null)
@@ -202,6 +203,14 @@ function App() {
   }
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 768px)')
+    const updateMobileLayout = (event) => setIsMobileLayout(event.matches)
+    setIsMobileLayout(mediaQuery.matches)
+    mediaQuery.addEventListener('change', updateMobileLayout)
+    return () => mediaQuery.removeEventListener('change', updateMobileLayout)
+  }, [])
+
+  useEffect(() => {
     const handlePopState = () => {
       const normalizedPath = normalizePath(window.location.pathname || '/')
       if (!KNOWN_ROUTES.has(normalizedPath)) {
@@ -279,6 +288,12 @@ function App() {
       window.removeEventListener('scroll', updateScrollTarget)
     }
   }, [isWorldsRoute])
+
+  useEffect(() => {
+    if (!isMobileLayout) return
+    setManifestoUnlocked(manifestoNodeOrder)
+    if (!activeManifestoNode) setActiveManifestoNode('balloons-main')
+  }, [isMobileLayout, activeManifestoNode, manifestoNodeOrder])
 
   useEffect(() => {
     if (isWorldsRoute) return undefined
@@ -955,11 +970,12 @@ function App() {
         </button>
 
         <div
-          className={`manifesto-reveal${manifestoUnlocked.length ? ' is-visible' : ''}`}
+          className={`manifesto-reveal${manifestoUnlocked.length || isMobileLayout ? ' is-visible' : ''}`}
           aria-live="polite"
           data-lenis-prevent
           data-lenis-prevent-wheel
           onWheelCapture={(event) => {
+            if (isMobileLayout) return
             const el = event.currentTarget
             if (el.scrollHeight <= el.clientHeight) return
             el.scrollTop += event.deltaY
@@ -968,8 +984,7 @@ function App() {
           }}
         >
           <div className="manifesto-reveal__stack">
-            {manifestoNodeOrder
-              .filter((node) => manifestoUnlocked.includes(node))
+            {(isMobileLayout ? manifestoNodeOrder : manifestoNodeOrder.filter((node) => manifestoUnlocked.includes(node)))
               .map((node) => (
               <p
                 key={node}

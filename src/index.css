@@ -4895,6 +4895,20 @@ img[src*="hero-title"] {
     padding: clamp(4.2rem, 9vh, 6rem) clamp(1rem, 5vw, 1.4rem);
   }
 
+  .contact-epilogue__content {
+    gap: clamp(1.2rem, 4vh, 2rem);
+  }
+
+  .contact-epilogue__lead {
+    font-size: clamp(1.28rem, 6.2vw, 1.9rem);
+    line-height: 1.18;
+  }
+
+  .contact-epilogue__links a {
+    font-size: clamp(0.98rem, 4.2vw, 1.1rem);
+    padding: 0.2rem 0;
+  }
+
   .hero-stage {
     padding: clamp(1.4rem, 5vh, 2.4rem) clamp(0.9rem, 4.5vw, 1.2rem)
       clamp(2rem, 6vh, 3rem);
@@ -4942,6 +4956,7 @@ img[src*="hero-title"] {
 
   .mapa-point h3 {
     font-size: clamp(0.96rem, 4.4vw, 1.18rem);
+    line-height: 1.12;
   }
 
   .mapa-point p {
@@ -4998,6 +5013,21 @@ img[src*="hero-title"] {
   .manifesto-reveal {
     top: clamp(50vh, 56vh, 64vh);
     max-height: min(42svh, 320px);
+  }
+
+  .manifesto-point {
+    min-width: 56px;
+    min-height: 56px;
+  }
+
+  .project-field__content {
+    left: clamp(0.8rem, 4vw, 1.2rem);
+    right: clamp(0.8rem, 4vw, 1.2rem);
+    max-width: none;
+  }
+
+  .project-field--ape-opening .project-field__intro-video-wrap {
+    height: clamp(240px, 50vh, 420px);
   }
 }
 
@@ -5060,6 +5090,10 @@ img[src*="hero-title"] {
   .project-field--ape-opening .project-field__intro-video-wrap {
     height: clamp(220px, 54vh, 420px);
   }
+
+  .contact-epilogue__lead {
+    font-size: clamp(1.2rem, 5.9vw, 1.7rem);
+  }
 }
 
 @media (max-height: 430px) and (orientation: landscape) {
@@ -5113,6 +5147,11 @@ img[src*="hero-title"] {
 
   .project-field--ape-opening .project-field__intro-video-wrap {
     height: clamp(180px, 58vh, 300px);
+  }
+
+  .contact-epilogue {
+    padding-top: 2.2rem;
+    padding-bottom: 2rem;
   }
 }
 

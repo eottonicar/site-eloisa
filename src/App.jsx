@@ -1,7 +1,24 @@
 import { useEffect, useRef, useState } from 'react'
 
+const ROUTES = {
+  home: '/',
+  worlds: '/mundos',
+  applied: '/aplicados',
+  contact: '/contato',
+}
+
+const KNOWN_ROUTES = new Set(Object.values(ROUTES))
+
+const normalizePath = (rawPath = '/') => {
+  const [withoutHash] = rawPath.split('#')
+  const [withoutQuery] = withoutHash.split('?')
+  const withLeadingSlash = withoutQuery.startsWith('/') ? withoutQuery : `/${withoutQuery}`
+  const withoutTrailingSlash = withLeadingSlash.replace(/\/+$/, '')
+  return withoutTrailingSlash || '/'
+}
+
 function App() {
-  const [currentPath, setCurrentPath] = useState(() => window.location.pathname || '/')
+  const [currentPath, setCurrentPath] = useState(() => normalizePath(window.location.pathname || '/'))
   const mapaRef = useRef(null)
   const manifestoRef = useRef(null)
   const senseFieldRef = useRef(null)
@@ -97,9 +114,9 @@ function App() {
       },
     ],
   }
-  const isWorldsRoute = currentPath === '/mundos'
-  const isAppliedRoute = currentPath === '/aplicados'
-  const isContactRoute = currentPath === '/contato'
+  const isWorldsRoute = currentPath === ROUTES.worlds
+  const isAppliedRoute = currentPath === ROUTES.applied
+  const isContactRoute = currentPath === ROUTES.contact
   const isProjectsRoute = isWorldsRoute || isAppliedRoute
 
   const renderProjectTitle = (projectName) => {
@@ -112,9 +129,11 @@ function App() {
   }
 
   const navigateTo = (path) => {
-    if (window.location.pathname === path) return
-    window.history.pushState({}, '', path)
-    setCurrentPath(path)
+    const normalizedPath = normalizePath(path)
+    const destination = KNOWN_ROUTES.has(normalizedPath) ? normalizedPath : ROUTES.home
+    if (window.location.pathname === destination) return
+    window.history.pushState({}, '', destination)
+    setCurrentPath(destination)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
   const activateManifestoNode = (node) => {
@@ -183,7 +202,20 @@ function App() {
   }
 
   useEffect(() => {
-    const handlePopState = () => setCurrentPath(window.location.pathname || '/')
+    const handlePopState = () => {
+      const normalizedPath = normalizePath(window.location.pathname || '/')
+      if (!KNOWN_ROUTES.has(normalizedPath)) {
+        window.history.replaceState({}, '', ROUTES.home)
+        setCurrentPath(ROUTES.home)
+        return
+      }
+      if (window.location.pathname !== normalizedPath) {
+        window.history.replaceState({}, '', normalizedPath)
+      }
+      setCurrentPath(normalizedPath)
+    }
+
+    handlePopState()
     window.addEventListener('popstate', handlePopState)
     return () => window.removeEventListener('popstate', handlePopState)
   }, [])
@@ -503,7 +535,19 @@ function App() {
               Se você chegou até aqui, a gente pode construir algo juntos.
             </p>
 
-            <p className="contact-epilogue__signature">
+            <p
+              className="contact-epilogue__signature"
+              role="link"
+              tabIndex={0}
+              onClick={() => navigateTo(ROUTES.home)}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault()
+                  navigateTo(ROUTES.home)
+                }
+              }}
+              aria-label="Voltar para a página inicial"
+            >
               <span>Eloísa Ottonicar</span>
               <span>Arquitetura narrativa</span>
             </p>
@@ -579,10 +623,38 @@ function App() {
                 <p className="projects-chapter-turn">{group.chapterLead}</p>
               ) : null}
               {isWorldsRoute ? (
-                <p className="projects-group-label projects-group-label--worlds">ARQUITETURA AUTORAL</p>
+                <p
+                  className="projects-group-label projects-group-label--worlds"
+                  role="link"
+                  tabIndex={0}
+                  onClick={() => navigateTo(ROUTES.home)}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                      event.preventDefault()
+                      navigateTo(ROUTES.home)
+                    }
+                  }}
+                  aria-label="Voltar para a página inicial"
+                >
+                  ARQUITETURA AUTORAL
+                </p>
               ) : null}
               {isAppliedRoute ? (
-                <p className="projects-group-label projects-group-label--applied">{group.title}</p>
+                <p
+                  className="projects-group-label projects-group-label--applied"
+                  role="link"
+                  tabIndex={0}
+                  onClick={() => navigateTo(ROUTES.home)}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                      event.preventDefault()
+                      navigateTo(ROUTES.home)
+                    }
+                  }}
+                  aria-label="Voltar para a página inicial"
+                >
+                  {group.title}
+                </p>
               ) : null}
               <div className="projects-stream">
                 {group.items.map((project) => (
@@ -747,11 +819,11 @@ function App() {
             data-links="line-1"
             role="link"
             tabIndex={0}
-            onClick={() => navigateTo('/mundos')}
+            onClick={() => navigateTo(ROUTES.worlds)}
             onKeyDown={(event) => {
               if (event.key === 'Enter' || event.key === ' ') {
                 event.preventDefault()
-                navigateTo('/mundos')
+                navigateTo(ROUTES.worlds)
               }
             }}
             aria-label="Abrir página Mundos"
@@ -765,11 +837,11 @@ function App() {
             data-links="line-1 line-2"
             role="link"
             tabIndex={0}
-            onClick={() => navigateTo('/aplicados')}
+            onClick={() => navigateTo(ROUTES.applied)}
             onKeyDown={(event) => {
               if (event.key === 'Enter' || event.key === ' ') {
                 event.preventDefault()
-                navigateTo('/aplicados')
+                navigateTo(ROUTES.applied)
               }
             }}
             aria-label="Abrir página Arquitetura aplicada"
@@ -783,11 +855,11 @@ function App() {
             data-links="line-4"
             role="link"
             tabIndex={0}
-            onClick={() => navigateTo('/contato')}
+            onClick={() => navigateTo(ROUTES.contact)}
             onKeyDown={(event) => {
               if (event.key === 'Enter' || event.key === ' ') {
                 event.preventDefault()
-                navigateTo('/contato')
+                navigateTo(ROUTES.contact)
               }
             }}
             aria-label="Abrir página Contato"

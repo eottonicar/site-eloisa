@@ -5168,3 +5168,117 @@ img[src*="hero-title"] {
     margin: 0 0 0.2rem 0 !important;
   }
 }
+
+@media (max-width: 768px) {
+  .hero-stage {
+    overflow: hidden;
+    min-height: auto;
+  }
+
+  .hero {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .mapa-stage {
+    overflow: hidden;
+    padding-bottom: clamp(2rem, 7vh, 3rem);
+  }
+
+  .mapa-canvas {
+    min-height: clamp(520px, 72vh, 640px);
+  }
+
+  .manifesto-experience {
+    min-height: auto;
+    padding-top: clamp(2.4rem, 8vh, 4rem);
+    padding-bottom: clamp(2.4rem, 8vh, 4rem);
+    overflow: hidden;
+  }
+
+  .manifesto-experience__line {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    max-width: min(92vw, 520px);
+    margin: 0 0 0.8rem;
+    z-index: 6;
+  }
+
+  .manifesto-experience__subtitle {
+    position: relative;
+    left: auto;
+    top: auto;
+    max-width: min(92vw, 520px);
+    margin: 0 0 1rem;
+    z-index: 6;
+  }
+
+  .manifesto-reveal {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    width: 100%;
+    margin-top: clamp(10rem, 22vh, 15rem);
+    max-height: none;
+    overflow: visible;
+  }
+
+  .projects-journey,
+  .projects-group,
+  .projects-stream {
+    overflow: visible;
+  }
+
+  .project-field,
+  .project-field--solaris,
+  .project-field--sense,
+  .project-field--isola,
+  .projects-group--applied .project-field {
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+  }
+
+  .project-field__media,
+  .project-field--solaris .project-field__media,
+  .project-field--sense .project-field__media,
+  .project-field--sense .project-field__media--diptych,
+  .project-field--isola .project-field__media,
+  .projects-group--applied .project-field__media {
+    min-height: auto;
+  }
+
+  .project-field__content,
+  .project-field--solaris .project-field__content,
+  .project-field--sense .project-field__content,
+  .project-field--isola .project-field__content,
+  .projects-group--applied .project-field__content,
+  .project-field--ape-opening .project-field__content--ape-flow {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    transform: none;
+    max-width: none;
+    width: 100%;
+    padding: clamp(0.9rem, 3.2vh, 1.4rem) clamp(0.9rem, 4vw, 1.2rem);
+    z-index: 2;
+  }
+
+  .project-field--ape-opening .project-field__intro-video-wrap {
+    height: clamp(220px, 52vh, 380px);
+  }
+
+  .contact-epilogue {
+    min-height: auto;
+    overflow: visible;
+    padding-top: clamp(2.6rem, 8vh, 4rem);
+    padding-bottom: clamp(2.4rem, 7vh, 3.6rem);
+  }
+}

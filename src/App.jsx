@@ -759,9 +759,8 @@ function App() {
   }
 
   return (
-    <main className="temple">
-      <section className="hero-stage" aria-label="Abertura do site">
-        <span className="author-ghost ghost-hero" aria-hidden="true">ELOISA</span>
+      <main className="temple">
+        <section className="hero-stage" aria-label="Abertura do site">
         <span className="hero-orbit orbit-a" aria-hidden="true"></span>
         <span className="hero-orbit orbit-b" aria-hidden="true"></span>
         <span className="hero-trace trace-a" aria-hidden="true"></span>

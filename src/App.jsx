@@ -554,6 +554,14 @@ function App() {
       <main className="temple temple--contact">
         <section className="contact-epilogue" aria-label="Contato">
           <div className="contact-epilogue__symbol" aria-hidden="true" />
+          <button
+            type="button"
+            className="page-back-btn"
+            onClick={navigateToHomeMapa}
+            aria-label="Voltar para o mapa"
+          >
+            <span aria-hidden="true">←</span>
+          </button>
           <div className="contact-epilogue__content">
             <p className="contact-epilogue__lead">
               Se você chegou até aqui, a gente pode construir algo juntos.
@@ -651,6 +659,14 @@ function App() {
     const visibleGroups = isWorldsRoute ? projectGroups : [appliedProjectsGroup]
     return (
       <main className="temple temple--worlds">
+        <button
+          type="button"
+          className="page-back-btn"
+          onClick={navigateToHomeMapa}
+          aria-label="Voltar para o mapa"
+        >
+          <span aria-hidden="true">←</span>
+        </button>
         <section className="projects-journey projects-journey--page" aria-label="projetos">
           {visibleGroups.map((group) => (
             <section
@@ -787,17 +803,6 @@ function App() {
                         ))}
                       </ul>
                     </div>
-                    {(isWorldsRoute && project.name === 'Isola') ||
-                    (isAppliedRoute && project.name === 'HOME OFFICE I-G') ? (
-                      <button
-                        type="button"
-                        className="project-back-to-map"
-                        onClick={navigateToHomeMapa}
-                        aria-label="Voltar para o início no mapa"
-                      >
-                        <span aria-hidden="true">↑</span>
-                      </button>
-                    ) : null}
                   </article>
                 ))}
               </div>

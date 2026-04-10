@@ -136,6 +136,30 @@ function App() {
     setCurrentPath(destination)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
+
+  const navigateToHomeMapa = () => {
+    const scrollToMapa = () => {
+      const mapaStage = document.querySelector('.mapa-stage')
+      if (!mapaStage) return false
+      mapaStage.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      return true
+    }
+
+    if (currentPath === ROUTES.home) {
+      scrollToMapa()
+      return
+    }
+
+    navigateTo(ROUTES.home)
+    let attempts = 0
+    const maxAttempts = 18
+    const tick = () => {
+      attempts += 1
+      if (scrollToMapa() || attempts >= maxAttempts) return
+      window.requestAnimationFrame(tick)
+    }
+    window.requestAnimationFrame(tick)
+  }
   const activateManifestoNode = (node) => {
     setActiveManifestoNode(node)
     setManifestoUnlocked((prev) => (prev.includes(node) ? prev : [...prev, node]))
@@ -535,23 +559,6 @@ function App() {
               Se você chegou até aqui, a gente pode construir algo juntos.
             </p>
 
-            <p
-              className="contact-epilogue__signature"
-              role="link"
-              tabIndex={0}
-              onClick={() => navigateTo(ROUTES.home)}
-              onKeyDown={(event) => {
-                if (event.key === 'Enter' || event.key === ' ') {
-                  event.preventDefault()
-                  navigateTo(ROUTES.home)
-                }
-              }}
-              aria-label="Voltar para a página inicial"
-            >
-              <span>Eloísa Ottonicar</span>
-              <span>Arquitetura narrativa</span>
-            </p>
-
             <ul className="contact-epilogue__links" aria-label="canais de contato">
               <li>
                 <a href="mailto:eloisa.o.claudino@gmail.com">
@@ -570,7 +577,7 @@ function App() {
                       strokeLinejoin="round"
                     />
                   </svg>
-                  <span className="contact-link__label">email</span>
+                  <span className="contact-link__label">Email</span>
                 </a>
               </li>
               <li>
@@ -598,7 +605,39 @@ function App() {
                     <circle cx="12" cy="12" r="3.4" fill="none" stroke="currentColor" strokeWidth="1.5" />
                     <circle cx="16.8" cy="7.2" r="0.95" fill="currentColor" />
                   </svg>
-                  <span className="contact-link__label">instagram</span>
+                  <span className="contact-link__label">Instagram</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://wa.link/al1qf2"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <svg
+                    className="contact-link__icon"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path
+                      d="M12 3.75a8.25 8.25 0 0 0-7.06 12.5L4 20.25l4.17-.87A8.25 8.25 0 1 0 12 3.75Z"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M9.35 9.12c.22-.5.45-.52.66-.52h.56c.1 0 .26.04.39.3.13.26.44 1.08.48 1.16.04.09.07.2.01.31-.06.11-.09.18-.18.28-.09.1-.18.22-.26.3-.09.09-.18.19-.08.37.1.18.43.71.93 1.15.64.56 1.17.73 1.35.81.18.08.29.07.4-.04.11-.11.45-.52.57-.7.12-.18.24-.15.4-.09.17.06 1.06.5 1.24.59.18.09.3.13.34.21.04.08.04.48-.17.94-.2.46-1.18.91-1.62.97-.41.06-.95.09-2.74-.72-2.16-.99-3.52-3.4-3.62-3.54-.1-.14-.87-1.15-.87-2.2 0-1.05.55-1.56.75-1.78Z"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                  <span className="contact-link__label">WhatsApp</span>
                 </a>
               </li>
             </ul>
@@ -748,6 +787,17 @@ function App() {
                         ))}
                       </ul>
                     </div>
+                    {(isWorldsRoute && project.name === 'Isola') ||
+                    (isAppliedRoute && project.name === 'HOME OFFICE I-G') ? (
+                      <button
+                        type="button"
+                        className="project-back-to-map"
+                        onClick={navigateToHomeMapa}
+                        aria-label="Voltar para o início no mapa"
+                      >
+                        <span aria-hidden="true">↑</span>
+                      </button>
+                    ) : null}
                   </article>
                 ))}
               </div>

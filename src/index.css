@@ -337,7 +337,8 @@ body.is-contact::after {
   display: grid;
   grid-template-columns: minmax(280px, 760px) minmax(170px, 1fr);
   align-items: center;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: visible;
   background: url("/images/hero/hero-bg.png") center / cover no-repeat;
   animation: heroStagePan 34s ease-in-out infinite alternate;
 }
@@ -4883,5 +4884,234 @@ img[src*="hero-title"] {
   .hero-title-image,
   img[src*="hero-title"] {
     transform: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-epilogue {
+    min-height: auto;
+    align-items: flex-start;
+    overflow: visible;
+    padding: clamp(4.2rem, 9vh, 6rem) clamp(1rem, 5vw, 1.4rem);
+  }
+
+  .hero-stage {
+    padding: clamp(1.4rem, 5vh, 2.4rem) clamp(0.9rem, 4.5vw, 1.2rem)
+      clamp(2rem, 6vh, 3rem);
+  }
+
+  .hero {
+    min-height: auto;
+    top: 0 !important;
+    transform: none !important;
+    margin-top: 0 !important;
+    padding-top: clamp(0.8rem, 3vh, 1.6rem) !important;
+  }
+
+  .hero-title {
+    width: 100% !important;
+    max-width: 100% !important;
+    transform: none !important;
+    margin: 0 !important;
+  }
+
+  .hero-button,
+  .hero .hero-button,
+  .hero .cta-button,
+  .hero a.cta-button,
+  .hero button.cta-button {
+    margin-top: 0 !important;
+  }
+
+  .hero .cta-button,
+  .hero .hero-button,
+  .hero button.cta-button,
+  .hero-button {
+    left: 0 !important;
+    --btn-shift-x: 0px !important;
+  }
+
+  .mapa-canvas {
+    min-height: 540px;
+  }
+
+  .mapa-point {
+    max-width: min(72vw, 260px);
+    padding: 0.2rem 0.44rem 0.24rem 0.72rem;
+  }
+
+  .mapa-point h3 {
+    font-size: clamp(0.96rem, 4.4vw, 1.18rem);
+  }
+
+  .mapa-point p {
+    font-size: clamp(0.74rem, 3.3vw, 0.88rem);
+    line-height: 1.36;
+  }
+
+  .project-field,
+  .project-field--solaris,
+  .project-field--sense,
+  .project-field--isola,
+  .projects-group--applied .project-field,
+  .projects-group--applied .project-field__media,
+  .project-field--solaris .project-field__media,
+  .project-field--sense .project-field__media,
+  .project-field--sense .project-field__media--diptych,
+  .project-field--sense .project-field__media--diptych img,
+  .project-field--isola .project-field__media {
+    min-height: clamp(70svh, 84svh, 96svh);
+  }
+
+  .project-field__content,
+  .projects-group--applied .project-field__content,
+  .project-field--sense .project-field__content,
+  .project-field--isola .project-field__content {
+    max-width: min(92vw, 33rem);
+  }
+
+  .project-field__content h4,
+  .project-field__bridge,
+  .project-field__entry,
+  .project-field__content li,
+  .projects-group--applied .project-field__content h4,
+  .projects-group--applied .project-field__content li,
+  .project-field--ape-opening .project-field__content--ape-flow .project-field__bridge,
+  .project-field--ape-opening .project-field__content--ape-flow li {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .manifesto-experience__line {
+    width: min(92vw, 460px);
+    font-size: clamp(36px, 10vw, 56px);
+    left: 1rem;
+  }
+
+  .manifesto-experience__subtitle {
+    left: 1rem;
+    top: clamp(37vh, 42vh, 50vh);
+    max-width: calc(100vw - 2rem);
+    white-space: normal;
+  }
+
+  .manifesto-reveal {
+    top: clamp(50vh, 56vh, 64vh);
+    max-height: min(42svh, 320px);
+  }
+}
+
+@media (max-width: 430px) {
+  .hero-stage {
+    padding: clamp(1rem, 4vh, 1.8rem) 0.75rem clamp(1.6rem, 5vh, 2.4rem);
+  }
+
+  .hero-title {
+    width: 100% !important;
+  }
+
+  .mapa-canvas {
+    min-height: 500px;
+  }
+
+  .mapa-point {
+    max-width: min(78vw, 238px);
+    padding: 0.18rem 0.36rem 0.22rem 0.62rem;
+  }
+
+  .p-1 { left: 4%; top: 12%; }
+  .p-2 { right: 4%; top: 12%; }
+  .p-6 { right: 6%; top: 66%; }
+
+  .manifesto-experience__line {
+    top: clamp(12vh, 16vh, 20vh);
+    width: min(92vw, 420px);
+    font-size: clamp(30px, 9vw, 42px);
+  }
+
+  .manifesto-experience__subtitle {
+    top: clamp(34vh, 38vh, 44vh);
+    font-size: clamp(12px, 3.2vw, 14px);
+  }
+
+  .manifesto-point--main { width: clamp(98px, 28vw, 132px); }
+  .manifesto-point--fragment { width: clamp(70px, 19vw, 98px); }
+  .manifesto-point--silent { width: clamp(60px, 16vw, 86px); }
+
+  .manifesto-reveal {
+    top: clamp(50vh, 55vh, 60vh);
+    max-height: min(40svh, 290px);
+  }
+
+  .project-field,
+  .project-field--solaris,
+  .project-field--sense,
+  .project-field--isola,
+  .projects-group--applied .project-field,
+  .projects-group--applied .project-field__media,
+  .project-field--solaris .project-field__media,
+  .project-field--sense .project-field__media,
+  .project-field--sense .project-field__media--diptych,
+  .project-field--sense .project-field__media--diptych img,
+  .project-field--isola .project-field__media {
+    min-height: clamp(62svh, 76svh, 90svh);
+  }
+
+  .project-field--ape-opening .project-field__intro-video-wrap {
+    height: clamp(220px, 54vh, 420px);
+  }
+}
+
+@media (max-height: 430px) and (orientation: landscape) {
+  .hero-stage {
+    padding-top: 0.85rem;
+    padding-bottom: 1rem;
+  }
+
+  .hero {
+    padding-top: 0.35rem !important;
+  }
+
+  .mapa-canvas {
+    min-height: 360px;
+  }
+
+  .manifesto-experience {
+    min-height: max(520px, 132svh);
+  }
+
+  .manifesto-experience__line {
+    top: 10vh;
+    width: min(58vw, 420px);
+    font-size: clamp(26px, 5.2vw, 38px);
+  }
+
+  .manifesto-experience__subtitle {
+    top: 32vh;
+    width: min(56vw, 420px);
+  }
+
+  .manifesto-reveal {
+    top: auto;
+    bottom: 0.8rem;
+    max-height: 44svh;
+  }
+
+  .project-field,
+  .project-field--solaris,
+  .project-field--sense,
+  .project-field--isola,
+  .projects-group--applied .project-field,
+  .projects-group--applied .project-field__media,
+  .project-field--solaris .project-field__media,
+  .project-field--sense .project-field__media,
+  .project-field--sense .project-field__media--diptych,
+  .project-field--sense .project-field__media--diptych img,
+  .project-field--isola .project-field__media {
+    min-height: clamp(460px, 96svh, 620px);
+  }
+
+  .project-field--ape-opening .project-field__intro-video-wrap {
+    height: clamp(180px, 58vh, 300px);
   }
 }

@@ -5124,7 +5124,8 @@ img[src*="hero-title"] {
   }
 
   .hero-title {
-    width: min(100vw, 1240px) !important;
-    max-width: 100% !important;
+    width: min(100vw, 1320px) !important;
+    max-width: min(100vw, 1320px) !important;
+    margin: 0 0 0.2rem 0 !important;
   }
 }

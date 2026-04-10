@@ -5181,19 +5181,28 @@ img[src*="hero-title"] {
   }
 
   .mapa-stage {
-    overflow: hidden;
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: hidden;
     padding-bottom: clamp(2rem, 7vh, 3rem);
   }
 
   .mapa-canvas {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin-inline: auto;
     min-height: clamp(520px, 72vh, 640px);
+    overflow-x: hidden;
   }
 
   .manifesto-experience {
     min-height: auto;
     padding-top: clamp(2.4rem, 8vh, 4rem);
     padding-bottom: clamp(2.4rem, 8vh, 4rem);
-    overflow: hidden;
+    overflow: visible;
   }
 
   .manifesto-experience__line {
@@ -5222,9 +5231,9 @@ img[src*="hero-title"] {
     top: auto;
     bottom: auto;
     width: 100%;
-    margin-top: clamp(10rem, 22vh, 15rem);
-    max-height: none;
-    overflow: visible;
+    margin-top: clamp(6rem, 14vh, 10rem);
+    max-height: none !important;
+    overflow: visible !important;
   }
 
   .projects-journey,
@@ -5297,5 +5306,17 @@ img[src*="hero-title"] {
     border: none !important;
     box-shadow: none !important;
     opacity: 0 !important;
+  }
+
+  .mapa-point {
+    width: min(68vw, 240px);
+    max-width: min(68vw, 240px);
+    box-sizing: border-box;
+  }
+
+  .mapa-point h3,
+  .mapa-point p {
+    overflow-wrap: anywhere;
+    word-break: normal;
   }
 }

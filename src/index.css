@@ -5115,3 +5115,16 @@ img[src*="hero-title"] {
     height: clamp(180px, 58vh, 300px);
   }
 }
+
+@media (min-width: 769px) {
+  .hero {
+    top: 0 !important;
+    transform: none !important;
+    margin-top: 0 !important;
+  }
+
+  .hero-title {
+    width: min(100vw, 1240px) !important;
+    max-width: 100% !important;
+  }
+}
